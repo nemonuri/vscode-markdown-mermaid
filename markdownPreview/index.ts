@@ -1,4 +1,4 @@
-import mermaid from 'mermaid';
+import mermaid, { MermaidConfig } from 'mermaid';
 import { renderMermaidBlocksInElement } from './mermaid';
 
 function init() {
@@ -12,7 +12,7 @@ function init() {
             ? darkModeTheme ?? 'dark'
             : lightModeTheme ?? 'default'
     };
-    mermaid.initialize(config);
+    mermaid.initialize(config as MermaidConfig);
 
     renderMermaidBlocksInElement(document.body, (mermaidContainer, content) => {
         mermaidContainer.innerHTML = content;

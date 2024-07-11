@@ -1,5 +1,5 @@
 import type * as MarkdownIt from 'markdown-it';
-import mermaid from 'mermaid';
+import mermaid, { MermaidConfig } from 'mermaid';
 import type { RendererContext } from 'vscode-notebook-renderer';
 import { renderMermaidBlocksInElement } from '../markdownPreview/mermaid';
 import { extendMarkdownItWithMermaid } from '../src/mermaid';
@@ -18,7 +18,7 @@ export async function activate(ctx: RendererContext<void>) {
         startOnLoad: false,
         theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast') ? 'dark' : 'default'
     };
-    mermaid.initialize(config);
+    mermaid.initialize(config as MermaidConfig);
 
     markdownItRenderer.extendMarkdownIt((md: MarkdownIt) => {
         extendMarkdownItWithMermaid(md, { languageIds: () => ['mermaid'] });
